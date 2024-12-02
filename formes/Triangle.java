@@ -2,6 +2,7 @@ package formes;
 
 import java.awt.*;
 
+// Classe Triangle qui hérite de la classe Forme
 public class Triangle extends Forme {
 
     // Constructeur de la classe Triangle
