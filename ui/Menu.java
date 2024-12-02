@@ -31,7 +31,8 @@ public class Menu {
         itemNouveau.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                afficherPanneauOutils(); // Ajouter les outils
+                // Ajouter les outils
+                afficherPanneauOutils(); 
             }
         });
 
@@ -39,7 +40,8 @@ public class Menu {
         itemQuitter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Quitter l'application
+                // Quitter l'application
+                System.exit(0); 
             }
         });
         menuFichier.add(itemNouveau);
@@ -53,14 +55,14 @@ public class Menu {
 
     // Méthode pour afficher le panneau d'outils
     private void afficherPanneauOutils() {
-        panneauOutils.removeAll(); // Réinitialiser le panneau
+        panneauOutils.removeAll();
 
         // Ajouter les boutons des outils
         JButton boutonSauvegarder = new JButton("Sauvegarder");
         boutonSauvegarder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Ouvrir une boîte de dialogue pour choisir l'emplacement et le format
+                // Ouvrir box de dialogue pour choisir emplacement et le format
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setDialogTitle("Choisir l'emplacement de sauvegarde");
                 fileChooser.setAcceptAllFileFilterUsed(false);
@@ -72,7 +74,7 @@ public class Menu {
                     File file = fileChooser.getSelectedFile();
                     String extension = fileChooser.getFileFilter().getDescription().contains("PNG") ? "png" : "jpg";
 
-                    // Appeler la méthode de sauvegarde
+                    // Appeler la metryhode de sauvegarde
                     try {
                         Sauvegarde sauvegarde = new Sauvegarde(zoneDessin);
                         sauvegarde.sauvegarderImage(file, extension);
