@@ -2,8 +2,13 @@
 <p align="center">Création du logiciel Paint avec le langage Java</p>
 
 ## Fonctionnalités
-Voici les fonctionnalités du Paint.
-- 
+Voici les principales fonctionnalités du Paint :
+
+- **Dessin libre**: Permet de dessiner à main levée avec une couleur personnalisable.
+- **Création de formes géométriques** : Ajout de rectangles, cercles et triangles avec une couleur personnalisable.
+- **Sélection et modification** : Déplacement, redimensionnement des objets dessinés.
+- **Mode gomme** : Effacez des éléments spécifiques (dessins libres ou formes).
+- **Sauvegarde d'image** : Exportez votre travail sous forme d'image (PNG, JPG, etc.).
 
 ## Prérequis
 Avant de commencer, assurez-vous d'avoir une connexion haut débit et installé les outils suivants sur votre machine :
@@ -55,15 +60,13 @@ Ce projet utilise une technologie:
 
 ## Structure du projet
 
-Ce projet comporte plusieurs package comme suit: 
-- formes
-- outils
-- ui
+Le projet est structuré en plusieurs packages, chacun gérant des fonctionnalités spécifiques :
 
-Ains que de plusieurs class.
+**formes** : Contient les classes pour les formes géométriques (Rectangle, Cercle, Triangle).
+**outils** : Regroupe les outils tels que le dessin libre et la gomme.
+**ui** : Contient les classes pour la gestion de l'interface utilisateur, y compris la zone de dessin principale.
 
-## Problème
-
+Ainsi que de plusieurs class.
 
 ## Licence
 Ce programme est sous licence MIT.
