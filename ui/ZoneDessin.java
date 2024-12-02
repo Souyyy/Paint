@@ -16,18 +16,21 @@ import formes.Triangle;
 import outils.Dessin;
 import outils.Gomme;
 
+// zone  pour dessiner, sélectionner, et gérer des formes et dessins
 public class ZoneDessin extends JPanel {
     private List<Forme> formes;
     private List<Dessin> dessins;
-    private Color couleurActuelle;
-    private boolean modeDessin;
-    private String modeForme;
-    private boolean modeSelection;
-    private Forme formeEnCours;
-    private Forme formeSelectionnee;
+
     private boolean enDeplacement;
     private boolean redimensionnement;
-    private Gomme gomme; // Référence à la classe Gomme
+    private boolean modeDessin;
+    private boolean modeSelection;
+
+    private Color couleurActuelle;
+    private String modeForme;
+    private Forme formeEnCours;
+    private Forme formeSelectionnee;
+    private Gomme gomme;
 
     public ZoneDessin() {
         formes = new ArrayList<>();
@@ -42,6 +45,7 @@ public class ZoneDessin extends JPanel {
 
         gomme = new Gomme(this); // Initialisation de l'objet Gomme
 
+        // Gestion des events de la souris
         MouseAdapter mouseAdapter = new MouseAdapter() {
             private int startX, startY;
 
@@ -67,15 +71,15 @@ public class ZoneDessin extends JPanel {
                 } else if (modeSelection) {
                     // Sélection d'une forme ou redimensionnement
                     formeSelectionnee = null;
-                    redimensionnement = false; // Démarrer sans redimensionnement
+                    redimensionnement = false; 
                     for (Forme forme : formes) {
                         if (forme.contientPoint(startX, startY)) {
                             formeSelectionnee = forme;
-                            enDeplacement = true; // Permettre le déplacement après sélection
+                            enDeplacement = true; 
                             break;
                         } else if (forme.contientPoignee(startX, startY)) {
                             formeSelectionnee = forme;
-                            redimensionnement = true; // Commencer le redimensionnement
+                            redimensionnement = true; 
                             break;
                         }
                     }
@@ -128,16 +132,18 @@ public class ZoneDessin extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (formeEnCours != null) {
-                    formeEnCours = null; // Fin de la création d'une forme
+                    formeEnCours = null;
                 }
-                enDeplacement = false; // Fin du déplacement
-                redimensionnement = false; // Fin du redimensionnement
+                enDeplacement = false; 
+                redimensionnement = false; 
             }
         };
-
+        
+        // Ajoute les gestionnaires d'événements de la souris
         addMouseListener(mouseAdapter);
         addMouseMotionListener(mouseAdapter);
 
+        // Gestion du clavier pour la suppression
         setFocusable(true);
         addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -172,6 +178,7 @@ public class ZoneDessin extends JPanel {
 
     }
 
+    // Active ou désactive le mode dessin libre
     public void activerModeDessin(boolean mode) {
         modeDessin = mode;
         modeForme = null; // Désactive les formes
@@ -180,6 +187,7 @@ public class ZoneDessin extends JPanel {
         gomme.activerModeGomme(false); // Désactive la gomme
     }
 
+    // Active ou désactive le mode gomme
     public void activerModeGomme(boolean mode) {
         gomme.activerModeGomme(mode);
         modeDessin = false;
@@ -188,6 +196,7 @@ public class ZoneDessin extends JPanel {
         formeSelectionnee = null;
     }
 
+    // Définit le mode pour une forme spécifique
     public void activerModeForme(String forme) {
         modeForme = forme;
         modeDessin = false; // Désactive le dessin libre
@@ -196,6 +205,7 @@ public class ZoneDessin extends JPanel {
         gomme.activerModeGomme(false); // Désactive la gomme
     }
 
+    // Active le mode sélection
     public void activerModeSelection() {
         modeSelection = true;
         modeDessin = false; // Désactive le dessin libre
@@ -204,6 +214,7 @@ public class ZoneDessin extends JPanel {
         gomme.activerModeGomme(false); // Désactive la gomme
     }
 
+    // Définit la couleur actuelle pour dessiner
     public void definirCouleurActuelle(Color couleur) {
         couleurActuelle = couleur;
     }
@@ -212,12 +223,12 @@ public class ZoneDessin extends JPanel {
         return modeDessin;
     }
 
-    // Méthode pour gérer le mode gomme
+    // Vérifie si le mode gomme est activé
     private boolean modeGomme() {
-        return gomme.isModeGomme(); // Vérifie si le mode gomme est actif
+        return gomme.isModeGomme();
     }
 
-    // Méthode pour effacer sous le curseur
+    // Efface les éléments sous le curseur
     public void effacerSousCurseur(int px, int py) {
         // Effacer les dessins libres
         dessins.removeIf(dessin -> dessin.contientPoint(px, py));
@@ -227,15 +238,12 @@ public class ZoneDessin extends JPanel {
     }
 
 
+    // Sauvegarde la zone de dessin dans un fichier image
     public void sauvegarderImage(File fichier, String format) throws IOException {
-        // Créer une image à partir de la zone de dessin
         BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
-        // Dessiner tout le contenu de la ZoneDessin sur l'image
         paint(g2d);
         g2d.dispose();
-
-        // Enregistrer l'image dans un fichier
         ImageIO.write(image, format, fichier);
     }
 
