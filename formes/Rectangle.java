@@ -2,6 +2,7 @@ package formes;
 
 import java.awt.*;
 
+// Classe Rectangle qui hérite de la classe Forme
 public class Rectangle extends Forme {
 
     // Constructeur de la classe Rectangle
