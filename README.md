@@ -10,6 +10,13 @@ Voici les principales fonctionnalités du Paint :
 - **Mode gomme** : Effacez des éléments spécifiques (dessins libres ou formes).
 - **Sauvegarde d'image** : Exportez votre travail sous forme d'image (PNG, JPG, etc.).
 
+## Lancement de l'application
+
+Au lancement du Paint il faut crée un nouveau fichier pour cela cliquer sur :
+```Fichier > Nouveau``` situé en haut à gauche.
+
+Vous pouvez maintenant dessiner !
+
 ## Prérequis
 Avant de commencer, assurez-vous d'avoir une connexion haut débit et installé les outils suivants sur votre machine :
 
