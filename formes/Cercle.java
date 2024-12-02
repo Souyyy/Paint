@@ -2,10 +2,11 @@ package formes;
 
 import java.awt.*;
 
+
+// Classe Cercle qui hérite de la classe Forme
 public class Cercle extends Forme {
 
-        // Constructeur de la classe Cercle
-
+    // Constructeur de la classe Cercle
     public Cercle(Color couleur, int x, int y) {
         super(couleur, x, y);
     }
